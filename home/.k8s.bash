@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # kubectl and kops autocompelte
-which kubectl && . <(kubectl completion bash)
-which kops && . <(kops completion bash)
+which kubectl > /dev/null && . <(kubectl completion bash)
+which kops > /dev/null && . <(kops completion bash)
 
 # alias
 alias k=kubectl
