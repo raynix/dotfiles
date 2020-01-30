@@ -36,7 +36,9 @@ function kexec() {
 
 # shorthand for k logs -f <pod-name> <container-name>, using fzf to select the pod
 function klogs() {
-  kubectl logs -f $(krs| fzf) $1
+  pod=$(krs| fzf)
+  container=$(kubectl get pods $pod -o jsonpath="{range .spec['containers','initContainers'][*]}{.name}{'\n'}"|fzf)
+  kubectl logs -f $pod $container
 }
 
 # shorthand for k describe <resource-type> <resource-name>, type defaults to pod and using fzf to select the resource
