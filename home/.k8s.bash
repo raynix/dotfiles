@@ -31,7 +31,9 @@ complete -F _krs_completion krs
 
 # shorthand for k exec -ti <pod-name> -- ..., using fzf to select the pod
 function kexec() {
-  kubectl exec -ti $(krs| fzf) -- $@
+  pod=$(krs| fzf)
+  container=$(kubectl get pods $pod -o jsonpath="{range .spec['containers'][*]}{.name}{'\n'}"|fzf)
+  kubectl exec -ti $pod -c $container -- $@
 }
 
 # shorthand for k logs -f <pod-name> <container-name>, using fzf to select the pod
