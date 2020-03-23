@@ -8,6 +8,11 @@ which kops > /dev/null && . <(kops completion bash)
 alias k=kubectl
 complete -F __start_kubectl k
 
+# select k8s cluster/context
+function kc() {
+  kubectl config use-context $(kubectl config get-contexts -o name | fzf)
+}
+
 # select k8s namespace
 function kns() {
   kubectl config set-context --current --namespace=$(kubectl get namespaces --output=jsonpath='{range .items[*]}{.metadata.name}{"\n"}'|fzf)
