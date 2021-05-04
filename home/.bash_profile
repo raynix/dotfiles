@@ -24,5 +24,8 @@ GIT_PROMPT_ONLY_IN_REPO=0
 # load settings for history
 [[ -f ~/.history.bash ]] && . ~/.history.bash
 
+# flux auto completion
+flux >/dev/null && . <(flux completion bash)
+
 # load secret envs
 [[ -f ~/.envs.bash ]] && . ~/.envs.bash
