@@ -52,3 +52,9 @@ function klogs() {
 function kdr() {
   kubectl describe ${1:-pod} $(krs ${1:-pod}| fzf)
 }
+
+# decrypt secrets
+function kds() {
+  secret=$(krs secret| fzf)
+  kubectl get secret $secret -o go-template='{{range $k,$v := .data}}{{"### "}}{{$k}}{{"\n"}}{{$v|base64decode}}{{"\n\n"}}{{end}}'
+}
