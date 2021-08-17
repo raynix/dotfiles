@@ -14,9 +14,14 @@ GIT_PROMPT_ONLY_IN_REPO=0
 [[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]] && . /usr/share/doc/fzf/examples/key-bindings.bash
 [[ -f /usr/share/doc/fzf/examples/completion.bash ]] && . /usr/share/doc/fzf/examples/completion.bash
 
+# complete alias
+[[ -f ~/.complete-alias/complete_alias ]] && . ~/.complete-alias/complete_alias
 
 # load k8s functions and auto-compeletion
 [[ -f ~/.k8s.bash ]] && . ~/.k8s.bash
+
+# load gcloud functions
+[[ -f ~/.gcloud.bash ]] && ~/.gcloud.bash
 
 # load shared functions
 [[ -f ~/.functions.bash ]] && . ~/.functions.bash
